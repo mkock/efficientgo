@@ -42,3 +42,15 @@ PASS
 ok  	github.com/mkock/efficient-go	25.918s
 Success: Benchmarks passed.
 ```
+
+## Decorators
+
+There's a really interesting blog post that shows how decorators/middleware could work in a way that respects the
+single responsibility and open/closed principles. Link: [bartfokker.com](https://bartfokker.com/posts/decorators/).
+
+This experiment is mostly a reproduction of the author's examples for my own reference.
+
+Main concepts:
+- There must be two interfaces: one for working with the implementation, and one for working with middlewares.
+- Middlewares can take custom arguments, but are required to return (a modified version of) a type that satisfies the interface for the implemented solution.
+- Middlewares return a function that redefines the implemented solution in order to add additional functionality to it.
