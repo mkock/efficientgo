@@ -54,3 +54,31 @@ Main concepts:
 - There must be two interfaces: one for working with the implementation, and one for working with middlewares.
 - Middlewares can take custom arguments, but are required to return (a modified version of) a type that satisfies the interface for the implemented solution.
 - Middlewares return a function that redefines the implemented solution in order to add additional functionality to it.
+
+
+## sync.Pool
+
+Iterating over a struct and using it for managing two random numbers to generate
+a result, using two strategies:
+
+1. `unpooledRandomizer`: allocates a struct per iteration.
+2. `pooledRandomizer`: uses sync.Pool to reduce allocations be recycling them.
+
+Metrics:
+
+```bash
+goos: windows
+goarch: amd64
+pkg: github.com/mkock/efficientgo
+BenchmarkUnpooledRandomizer-8                 36          36206583 ns/op         2007138 B/op          1 allocs/op
+--- BENCH: BenchmarkUnpooledRandomizer-8
+    pool_test.go:13: 500000
+    pool_test.go:13: 500000
+    pool_test.go:13: 500000
+BenchmarkPooledRandomizer-8                   27          46013848 ns/op         2007675 B/op          3 allocs/op
+--- BENCH: BenchmarkPooledRandomizer-8
+    pool_test.go:22: 500000
+    pool_test.go:22: 500000
+PASS
+ok      github.com/mkock/efficientgo    3.961s
+```
