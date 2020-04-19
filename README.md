@@ -9,6 +9,11 @@ Marshalling a simple struct into JSON using two strategies:
 1. `MarshalDirect`: the usual approach of marshalling into a byte slice and then printing that.
 2. `MarshalWriter`: avoiding the temporary buffer by writing directly to a `Writer`.
 
+Files:
+
+- [marshal-writer.go](marshal-writer.go)
+- [marshal-writer_test.go](marshal-writer_test.go)
+
 Metrics:
 
 ```bash
@@ -29,6 +34,11 @@ Building a string from a series of random text snippets using two strategies:
 
 1. `ConcatString`: the usual approach of constructing a new string from the concatenation of two others.
 2. `ConcatStringBuilder`: avoiding the overhead of allocation by leveraging the `strings.Builder` from the stdlib.
+
+Files:
+
+- [string-concat.go](string-concat.go)
+- [string-concat_test.go](string-concat_test.go)
 
 Metrics:
 
@@ -55,6 +65,10 @@ Main concepts:
 - Middlewares can take custom arguments, but are required to return (a modified version of) a type that satisfies the interface for the implemented solution.
 - Middlewares return a function that redefines the implemented solution in order to add additional functionality to it.
 
+Files:
+
+- [decorators.go](decorators.go)
+- [decorators_test.go](decorators_test.go)
 
 ## sync.Pool
 
@@ -63,6 +77,11 @@ a result, using two strategies:
 
 1. `unpooledRandomizer`: allocates a struct per iteration.
 2. `pooledRandomizer`: uses sync.Pool to reduce allocations be recycling them.
+
+Files:
+
+- [pool.go](pool.go)
+- [pool_test.go](pool_test.go)
 
 Metrics:
 
@@ -91,6 +110,10 @@ and one does not:
 1. `printAsValue` simply prints the struct, which escapes to the heap.
 2. `printAsIndividualFields` prints each field of the struct without reflection, but still escapes to heap.
 3. `printByteSlice` creates a string manually before printing, which does not escape to the heap.
+
+Files:
+
+- [heap.go](heap.go)
 
 Metrics:
 
