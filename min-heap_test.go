@@ -44,11 +44,14 @@ func TestMinHeap(t *testing.T) {
 	for ee.Len() > 0 {
 		fmt.Println(heap.Pop(&ee).(event))
 	}
+	fmt.Println("--------")
 
 	heap.Push(&ee, e1)
 	heap.Push(&ee, e4)
 	heap.Push(&ee, e3)
 	heap.Push(&ee, e6)
+	heap.Push(&ee, e2)
+	heap.Push(&ee, e5)
 
 	for ee.Len() > 0 {
 		fmt.Println(heap.Pop(&ee).(event))
