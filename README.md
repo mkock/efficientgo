@@ -147,3 +147,13 @@ BenchmarkSorts1000/BenchmarkBuiltinSort-8        	   15807	     75124 ns/op
 BenchmarkSorts10000/BenchmarkBubbleSort-8         	      50	  21047367 ns/op
 BenchmarkSorts10000/BenchmarkBuiltinSort-8        	    1210	    979537 ns/op
 ```
+
+## Min-Heap
+
+Making use of `container/heap` to get a pre-sorted data structure that always returns the minimum value.
+Tested using timestamps as the value to be sorted.
+
+Files:
+
+- [min-heap.go](min-heap.go)
+- [min-heap_test.go](min-heap_test.go)
